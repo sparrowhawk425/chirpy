@@ -2,8 +2,18 @@
 A mockup of a social network using a Go HTTP server backed by a local Postgres database. Users are authenticated using JWT.
 
 ## Overview
-The application starts a server on http://localhost:8080/ where it can serve API requests from users. You can create users with a password. When they log in, they can post new "chirps" if they are authenticated.
+The application starts a server on http://localhost:8080/ where it can serve API requests from users. You can create users with a password. When they log in, they can post new "chirps" if they are authenticated. The server includes a fileserver to provide a front-end welcome page (currently barebones) and assets are stored in an `assets` folder.
 
+## Install
+Use `go build` and `go install` to generate the `chirpy` executable. Ensure it is on the your system `PATH`. You need to install postgres on your system and initialize a chirpy database. You need a local `.env` file to store private data. It contains 4 data fields, `DB_URL`, `PLATFORM`, `TOKEN_SECRET` and `POLKA_SECRET`. This stores the URL to the Postgres database, the platform (dev or prod), the token secret used to validate bearer tokens and a hexadecimal string for the Polka ApiKey.
+
+Example:
+```
+DB_URL="postgres://postgres:postgres@localhost:5432/chirpy?sslmode=disable"
+PLATFORM="dev"
+TOKEN_SECRET="SIQ08e4RcPWgOMuUD16dE9eAkzA+ufFQooC6ilEPb19CDmgY3ZEhwdLiIk1aM72v3fGhKhdxKyHTz4rs4mrrQQ=="
+POLKA_KEY="e234989fa09c090b0090e923ab"
+```
 ## API
 The service provides many endpoints to allow users to interact with the service.
 
